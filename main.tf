@@ -18,7 +18,7 @@ resource "azurerm_subnet" "main" {
 }
 
 resource "azurerm_public_ip" "main" {
-  name                = "${var.name}-pubip${count.index}"
+  name                = "${var.name}-pubip${count.index}-v2.0.2"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   allocation_method   = "Static"
@@ -26,7 +26,7 @@ resource "azurerm_public_ip" "main" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.name}-nic${count.index}"
+  name                = "${var.name}-nic${count.index}-v2.0.2"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   count = var.vmcount
@@ -40,7 +40,7 @@ resource "azurerm_network_interface" "main" {
 }
 
 resource "azurerm_virtual_machine" "main" {
-  name                  = "${var.name}-vm${count.index}"
+  name                  = "${var.name}-vm${count.index}-v2.0.2"
   location              = azurerm_resource_group.main.location
   resource_group_name   = azurerm_resource_group.main.name
   network_interface_ids = [element(azurerm_network_interface.main.*.id, count.index)]
